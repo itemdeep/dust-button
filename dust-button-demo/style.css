@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: #0b0d12;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0b0d12; /* düz arka plan */
+}
+
+#fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.delete-btn {
+  position: relative;
+  z-index: 2;
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 22px;
+  min-width: 130px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  background: linear-gradient(180deg, #ff5f66 0%, #ea3846 100%);
+  box-shadow:
+    0 10px 24px rgba(234, 56, 70, 0.28),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: translateZ(0) scale(1);
+  opacity: 1;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.delete-btn:hover {
+  box-shadow:
+    0 14px 28px rgba(234, 56, 70, 0.32),
+    inset 0 1px 0 rgba(255,255,255,0.22);
+}
+
+.delete-btn:active {
+  transform: scale(0.97);
+}
+
+.delete-btn .icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.delete-btn.disintegrating {
+  animation: pressAndFade 420ms cubic-bezier(.2,.8,.2,1) forwards;
+  pointer-events: none;
+}
+
+@keyframes pressAndFade {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  22% {
+    transform: scale(0.95);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(0.80);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+.delete-btn.hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reset-btn {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+  color: #e7eaf0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+}
+
+.reset-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
